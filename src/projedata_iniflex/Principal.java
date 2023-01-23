@@ -60,7 +60,7 @@ public class Principal {
                 imprimeFuncionarios(funcionarios);
     }
 
-    // Imprimir os funcionários, agrupados por função.
+    // Imprimi os funcionários, agrupados por função.
 
     public static void imprimeFuncionariosPorFuncao(List<Funcionario> funcionarios) {
         // Agrupa os funcionários por função
@@ -72,7 +72,7 @@ public class Principal {
             funcionariosPorFuncao.get(f.getFuncao()).add(f);
         });
 
-        // Imprime os funcionarios por função
+        // Imprime os funcionarios
 
         funcionariosPorFuncao.forEach((funcao, funcionariosDaFuncao) -> {
             System.out.println("Funcionários da função: " + funcao);
@@ -85,20 +85,15 @@ public class Principal {
 
     }
 
-    // Imprimir os funcionários que fazem aniversário no mês 10 e 12.
+    // Imprimi os funcionários que fazem aniversário no mês 10 e 12.
 
     public static void imprimeAniversariantesDoMes(List<Funcionario> funcionarios, List<Integer> meses) {
         funcionarios.stream()
                 .filter(f -> meses.contains(f.getDataNascimento().getMonthValue()))
-                .forEach(f -> {
-                    System.out.println("Nome: " + f.getNome());
-                    System.out.println("Data de nascimento: " + f.getDataNascimento().format(formatter));
-                    System.out.println("Salário: " + f.getSalario().toString().replace(".", ","));
-                    System.out.println("Função: " + f.getFuncao());
-                });
+                .forEach(f -> System.out.println("Nome: " + f.getNome() + ", Data de nascimento: " + f.getDataNascimento().format(formatter)));
     }
 
-    // Imprimir o funcionário com a maior idade, exibir os atributos: nome e idade
+    // Imprimi o funcionário com a maior idade, exibir os atributos: nome e idade
 
     public static void imprimeMaiorIdade(List<Funcionario> funcionarios) {
         funcionarios.stream()
@@ -107,7 +102,7 @@ public class Principal {
                         + Period.between(f.getDataNascimento(), LocalDate.now()).getYears()));
     }
 
-    // Imprimir a lista de funcionários por ordem alfabética.
+    // Imprimi a lista de funcionários por ordem alfabética.
 
     public static void imprimeFuncionariosOrdemAlfabetica(List<Funcionario> funcionarios) {
         funcionarios.sort(Comparator.comparing(Funcionario::getNome));
@@ -119,7 +114,7 @@ public class Principal {
         });
     }
 
-    // Imprimir o total dos salários dos funcionários.
+    // Imprimi o total dos salários dos funcionários.
 
     public static void somaSalarios(List<Funcionario> funcionarios) {
         BigDecimal totalSalarios = funcionarios.stream()
@@ -128,7 +123,7 @@ public class Principal {
         System.out.println("Total de salários: " + totalSalarios);
     }
 
-    // Imprimir quantos salários mínimos ganha cada funcionário
+    // Imprimi quantos salários mínimos ganha cada funcionário
 
     public static void imprimeQuantidadeDeSalarioMinPorFuncionario(List<Funcionario> funcionarios, double salarioMin) {
         final BigDecimal salarioMinimo = new BigDecimal(salarioMin);
