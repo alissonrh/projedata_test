@@ -15,40 +15,15 @@ import java.util.Map;
 public class Principal {
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    // Cria a lista de funcionários
-    static List<Funcionario> funcionarios = new ArrayList<>();
+
     // Cria a lista de meses pra pesquisar os aniversariantes
     static List<Integer> meses = Arrays.asList(10, 12);
 
     public static void main(String[] args) {
+        // Cria a lista de funcionários
+        ArrayList<Funcionario> funcionarios = new InstanceControl().loader("tabela_funcionarios.csv");
 
-        // Insere os funcionários na lista
-        // LocalDate format yyyy-MM-dd
-        funcionarios
-                .add(new Funcionario("Maria", LocalDate.parse("2000-10-18"), new BigDecimal("2009.44"), "Operador"));
-        funcionarios
-                .add(new Funcionario("João", LocalDate.parse("1990-05-12"), new BigDecimal("2284.38"), "Operador"));
-
-        funcionarios
-                .add(new Funcionario("Caio", LocalDate.parse("1961-05-02"), new BigDecimal("9836.14"), "Coordenador"));
-        funcionarios
-                .add(new Funcionario("Miguel", LocalDate.parse("1988-10-14"), new BigDecimal("19119.88"), "Diretor"));
-        funcionarios
-                .add(new Funcionario("Alice", LocalDate.parse("1995-01-05"), new BigDecimal("2234.68"),
-                        "Recepcionista"));
-        funcionarios
-                .add(new Funcionario("Heitor", LocalDate.parse("1999-11-19"), new BigDecimal("1582.72"), "Operador"));
-        funcionarios
-                .add(new Funcionario("Arthur", LocalDate.parse("1993-03-31"), new BigDecimal("4071.45"), "Contador"));
-        funcionarios
-                .add(new Funcionario("Laura", LocalDate.parse("1994-07-08"), new BigDecimal("3017.45"), "Gerente"));
-        funcionarios
-                .add(new Funcionario("Heloísa", LocalDate.parse("2003-05-24"), new BigDecimal("1606.85"),
-                        "Eletricista"));
-        funcionarios
-                .add(new Funcionario("Helena", LocalDate.parse("1996-09-02"), new BigDecimal("2799.93"), "Gerente"));
-
-   /*      imprimeFuncionarios(funcionarios);
+        imprimeFuncionarios(funcionarios);
         removeFuncionarios(funcionarios, "João");
         aumentaSalario(funcionarios, 10);
         imprimeFuncionariosPorFuncao(funcionarios);
@@ -56,7 +31,8 @@ public class Principal {
         imprimeMaiorIdade(funcionarios);
         imprimeFuncionariosOrdemAlfabetica(funcionarios);
         somaSalarios(funcionarios);
-        imprimeQuantidadeDeSalarioMinPorFuncionario(funcionarios, 1212); */
+        imprimeQuantidadeDeSalarioMinPorFuncionario(funcionarios, 1212);
+         
     }
 
     // Imprime todos os funcionários com suas informações
@@ -73,6 +49,7 @@ public class Principal {
 
     public static void removeFuncionarios(List<Funcionario> funcionarios, String funcionario) {
         funcionarios.removeIf(f -> f.getNome().equals(funcionario));
+        imprimeFuncionarios(funcionarios);
     }
 
     // Aumenta o salário dos funcionários em 10%
@@ -80,6 +57,7 @@ public class Principal {
         BigDecimal increase = BigDecimal.valueOf(1 + percent / 100);
         funcionarios.forEach(
                 f -> f.setSalario(f.getSalario().multiply(increase).setScale(2, RoundingMode.HALF_UP)));
+                imprimeFuncionarios(funcionarios);
     }
 
     // Imprimir os funcionários, agrupados por função.
@@ -162,6 +140,5 @@ public class Principal {
 
     }
 }
-
 
 //
